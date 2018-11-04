@@ -5,11 +5,15 @@ agent any
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   stages {
+    script{
+        def app
+    }
+
     stage('Build') {
       steps {
         script
         {
-        	def app = docker.build("timgondasr/hellonode")
+        	app = docker.build("timgondasr/hellonode")
         }
       }
     }
