@@ -6,7 +6,10 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        docker.build("timgondasr/hellonode")
+        script
+        {
+        	def app = docker.build("timgondasr/hellonode")
+        }
       }
     }
     stage('Publish') {
