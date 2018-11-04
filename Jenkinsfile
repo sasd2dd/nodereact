@@ -1,3 +1,4 @@
+def app
 pipeline {
 agent any
 
@@ -5,10 +6,6 @@ agent any
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   stages {
-    script{
-        def app
-    }
-
     stage('Build') {
       steps {
         script
