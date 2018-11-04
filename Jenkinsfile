@@ -14,9 +14,6 @@ agent any
       }
     }
     stage('Publish') {
-      when {
-        branch 'master'
-      }
       steps {
 	        script{
 				docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
