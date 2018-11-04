@@ -7,15 +7,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node main.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/getintodevops/hellonode/"
-  },
   "keywords": [
     "node",
     "docker",
     "dockerfile"
   ],
-  "author": "miiro@getintodevops.com",
-  "license": "ISC"
+  "author": "timothy.gonda@gmail.com",
+  "license": "Apache"
 }
