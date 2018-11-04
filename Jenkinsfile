@@ -1,20 +1,24 @@
 pipeline {
-    agent {
-        docker { 
-        	image 'node:7-alpine'
-        	args '-p 3000:3000'
-         }
+  agent { label 'docker' }
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '5'))
+  }
+  stages {
+    stage('Build') {
+      steps {
+        docker.build("timgondasr/hellonode")
+      }
     }
-    stages {
-        stage('Version') {
-            steps {
-                sh 'node --version'
-            }
-        }
-        stage('Install') {
-            steps {
-                sh 'npm install'
-            }
-        }
+    stage('Publish') {
+      when {
+        branch 'master'
+      }
+      steps {
+	        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+	            app.push("${env.BUILD_NUMBER}")
+	            app.push("latest")
+	        }
+      }
     }
+  }
 }
